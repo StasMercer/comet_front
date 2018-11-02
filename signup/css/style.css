@@ -1,0 +1,308 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: #f3f7fa;
+	font-size: 18px;
+	letter-spacing: 0.025em;
+}
+div {
+	box-sizing: border-box;
+}
+h1,h2 {
+	padding: 0;
+	margin: 0;
+}
+main {
+	padding-top: 50px;
+	margin-bottom: 50px;
+}
+.loaderBg{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	z-index: 3;
+	-webkit-transition: opacity .5s;
+	-o-transition: opacity .5s;
+	transition: opacity .5s;
+}
+.signUpLoaderBG{
+	position: absolute;
+	border-radius: 5px;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(255,255,255,.5);
+	z-index: 4;
+}
+.screenLoader{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	height: 100px;
+	width: 100px;
+	border: 6px solid transparent;
+	border-top-color: #1ca9f0;
+	border-radius: 50%;
+	animation: 2s infinite spin;
+}
+.done{
+	opacity: 0;
+	z-index: -1;
+}
+.container{
+	padding: 0 5%;
+}
+.signUp{
+	position: relative;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: 10px 30px;
+	padding-bottom: 40px;
+	margin: 0 auto;
+	width: 46%;	
+	border-radius: 5px;
+	background: #fff;
+	box-shadow: 3px 3px 10px rgba(0,0,0,.1);
+	font-family: "Roboto";
+
+	animation-name: fadeout;
+	animation-duration: 1s;
+}
+.signUp__title {
+	font-size: 2em;
+	padding-bottom: 30px;
+	padding-top: 30px;
+}
+.socailSignBtn-google {
+	display: flex;
+	width: 100%;
+	margin-bottom: 15px;
+	padding: 5px 20px;
+	border-radius: 5px;
+	text-align: center;
+	box-shadow: 5px 5px 10px rgba(0,0,0,.1);
+	height: 50px;
+	line-height: 50px;
+	color: #fff;
+	background: #EA4335;
+	cursor: pointer;
+	-webkit-transition: background .2s;
+	-o-transition: background .2s;
+	transition: background .2s;
+}
+.socailSignBtn-google:hover {
+	background: #C72012;
+}
+.socailSignBtn-facebook {
+	display: flex;
+	width: 100%;
+	margin-bottom: 15px;
+	padding: 5px 20px;
+	border-radius: 5px;
+	text-align: center;
+	box-shadow: 5px 5px 10px rgba(0,0,0,.1);
+	height: 50px;
+	line-height: 50px;
+	color: #fff;
+	background: #4267B2;
+	cursor: pointer;
+	-webkit-transition: background .2s;
+	-o-transition: background .2s;
+	transition: background .2s;
+}
+.socailSignBtn-facebook:hover {
+	background: #1F448F;
+}
+.socailSignBtn__title{
+	font-size: 1.35em;
+	font-weight: 400;
+	align-self: center;
+	margin:0 auto;
+	display: inline-block;
+}
+.socailSignBtn__icon{
+	font-size: 1.7em;
+	align-self: center;
+}
+.userData{
+	margin-bottom: 13px;
+	width: 100%;
+}
+.userData__title{
+	font-size: .95em;
+	margin-bottom: 5px;
+	display: inline-block;
+}
+.userData__title-BDay{
+	width: 100%;
+}
+.userData__input {
+	width: 100%;
+	height: 30px;
+	padding: 0 6px;
+	border: 1px solid rgba(0,0,0,.2);
+	border-radius: 3px;
+	background: #FAFAFA;
+	font-size: .9em;
+	font-family: "Roboto";
+}
+.userData__input:focus {
+	background: #fff;
+}
+.userData__day{
+	width: 17%;
+}
+.userData__month{
+	width: 23%;
+}
+.userData__year{
+	width: 17%;
+}
+.userData__aboutInput{
+	position: relative;
+	display: inline-block;
+	text-align: center;
+	line-height: 13px;
+	color: #1ca9f0;
+	font-size: .6em;
+	border: 1px solid #1ca9f0;
+	border-radius: 50%;
+	width: 13px;
+	height: 13px;
+	cursor: pointer;
+}
+.tipBlock{
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	line-height: 20px;
+	color: black;
+	width: 300px;
+	text-align: left;
+	background: #E8E8E8;
+	padding: 5px 15px;
+	border: 1px solid rgba(0,0,0,.4);
+	border-radius: 5px;
+	font-size: 1.3em;
+	border-bottom-left-radius: 0;
+	-webkit-transition: all 1s;
+	-o-transition: all 1s;
+	transition: all 1s;
+}
+.slide-fade-enter-active, .slide-fade-leave-active {
+  	transition: all .35s;
+}
+
+.slide-fade-enter  {
+	bottom: -5px;
+ 	opacity: 0;
+}
+.slide-fade-leave-to{
+	bottom: -5px;
+ 	opacity: 0;
+
+}
+.userData__submit{
+	position: relative;
+}
+.signUp__submit{
+	width: 100%;
+	height: 60px;
+	background: #1ca9f0;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 5px 5px 5px rgba(0,0,0,.1);
+	font-family: "Roboto";
+	font-size: 1.5em;
+	color: #fff;
+	outline-color: gray;
+	cursor: pointer;
+	-webkit-transition: all .3s;
+	-o-transition: all .3s;
+	transition: all .3s;
+}
+
+.signUp__submit:hover{
+	background: #0C99E0;
+}
+.signUp__submit:disabled{
+	opacity: .3;
+}
+
+
+.errorInput{
+	border-color: red;
+	animation-name: shake;
+	animation-duration: .4s;
+}
+.errorMsg{
+	font-size: .7em;
+	color: red;
+}
+.loader{
+	margin-top: 5px;
+	width: 12px;
+	height: 12px;
+	border-radius:50%;
+	border: 3px solid transparent;
+	border-top-color: #1ca9f0;
+	border-left-color: #1ca9f0;
+	background: transparent;
+	display: block;
+	animation: 1s infinite smallSpin;
+}
+.verificationBtn{
+	margin-top: 40px;
+	height: 50px;
+	font-size: 1.5em;
+	
+}
+
+@keyframes fadeout {
+	from{
+		opacity: 0;
+		margin-top: -100px;
+	} to{
+		opacity: 1;
+		margin-top: 0;
+	}
+}
+@keyframes smallSpin {
+	from{
+		transform: rotate(0deg);
+	}
+	to{
+		transform: rotate(360deg);
+	}
+}
+@keyframes spin {
+	from{
+		transform: translate(-50%,-50%) rotate(0deg);
+	}
+	to{
+		transform: translate(-50%,-50%) rotate(360deg);
+	}
+}
+@keyframes shake{
+	0%{
+		margin-left: 0;
+	}
+	25%{
+		margin-left: -5px;
+	}
+	50%{
+		margin-left: 5px;
+	}
+	75%{
+		margin-left: -2px;
+	}
+	100%{
+		margin-left: 0;
+	}
+}

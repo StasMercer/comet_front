@@ -1,0 +1,120 @@
+@media screen and (min-width: 1920px){
+	body{
+		font-size: 25px;
+	}
+	.signUp{
+		width: 30%;
+	}
+	.socailSignBtn__icon{
+		font-size: 1.4em;
+	}
+	.socailSignBtn__title{
+		font-size: 1.25em;
+	}
+	.userData__input{
+		height: 40px;
+	}
+	.userData__BDay{
+		height: 30px;
+		font-size: .8em;
+	}
+}
+@media screen and (max-width: 1920px){
+	body{
+		font-size: 22px;
+	}
+	.signUp{
+		width: 30%;
+	}
+	.socailSignBtn__icon{
+		font-size: 1.4em;
+	}
+	.socailSignBtn__title{
+		font-size: 1.25em;
+	}
+	.userData__input{
+		height: 40px;
+	}
+	.userData__BDay{
+		height: 30px;
+		font-size: .8em;
+	}
+}
+
+@media screen and (max-width: 1600px){
+	body{
+		font-size: 20px;
+	}
+	.signUp{
+		width: 35%;
+	}
+	.userData{
+		margin-bottom: 20px;
+	}
+	.socailSignBtn-facebook{
+		margin-bottom: 20px;
+	}
+	
+}
+
+@media screen and (max-width: 1368px){
+	.signUp{
+		width: 50%;
+	}
+	body{
+		font-size: 16px;
+	}
+}
+@media screen and (max-width: 1120px){
+	.socailSignBtn__title{
+		font-size: 1em;
+	}
+}
+@media screen and (max-width: 960px){
+	.signUp{
+		width: 65%;
+	}
+	body{
+		font-size: 20px;
+	}
+}
+
+@media screen and (max-width: 768px){
+	.signUp{
+		width: 100%;
+	}
+	body{
+		font-size: 25px;
+	}
+	.userData{
+		margin-bottom: 24px;
+	}
+	.signUp__submit{
+		margin-top: 8px;
+	}
+	.socialSignBtn{
+		height: 60px;
+	}
+}
+@media screen and (max-width: 560px){
+	.socailSignBtn__title{
+		font-size: 1em;
+	}
+}
+
+
+@media screen and (max-width: 480px){
+	body{
+		font-size: 23px;
+	}
+	.userData__day{
+		width: 28%;
+
+	}
+	.userData__month{
+		width: 28%;
+	}
+	.userData__year{
+		width: 28%;
+	}
+}
