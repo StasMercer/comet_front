@@ -12,8 +12,7 @@ Vue.component('aboutinput',{
 let signUp = new Vue({
 	el: "#signUpBlock",
 	data: {
-		registrationLink: "https://comeandmeet.herokuapp.com/api/",
-		verificationLink: "http://comeandmeet.herokuapp.com/accounts/verify_email/",
+		registrationLink: "https://comeandmeet.herokuapp.com/accounts/",
 		trueVerificationCode: "",
 		userVerificationCode:"",
 		axiosConfig : {
@@ -71,16 +70,16 @@ let signUp = new Vue({
 					this.loaders.loginLoader = true;
 					this.isErrors[0].uniqLogin = false;
 					let self = this;
-					axios.post(this.registrationLink,param,this.axiosConfig).then(function(response){
+					axios.post(`${this.registrationLink}check_username/${this.userLogin}/`,param,this.axiosConfig).then(function(response){
 						self.loaders.loginLoader = false;
 						self.isErrors[0].uniqLogin = false;
 
-					}, 
+					},
 					function(error){
 						self.loaders.loginLoader = false;
 						let loginError = error.response.data.errors;
 						for(key in loginError){
-							if(			loginError[key].source.pointer == '/data/attributes/username' && 
+							if(			loginError[key].source.pointer == '/data/attributes/username' &&
 							  			loginError[key].detail 		   == "This field must be unique."	){
 								self.isErrors[0].uniqLogin = true;
 							}
@@ -100,10 +99,10 @@ let signUp = new Vue({
 				let self = this;
 				this.isErrors[0].uniqMail = false;
 				this.loaders.mailLoader = true;
-				axios.post(this.registrationLink,param,this.axiosConfig).then(function(response){	
+				axios.post(`${this.registrationLink}check_email/${this.userMail}/`,param,this.axiosConfig).then(function(response){
 							self.loaders.mailLoader = false;
 							self.isErrors[0].uniqMail = false;
-					}, 
+					},
 					function(error){
 						self.loaders.mailLoader = false;
 						let mailError = error.response.data.errors;
@@ -119,7 +118,7 @@ let signUp = new Vue({
 		getVerificationCode: function(){
 			let link = this.verificationLink + this.userMail+"/";
 			let self = this;
-			axios.get(link).then(function(response){
+			axios.get(`${this.registrationLink}verify_email/${this.userMail}/`).then(function(response){
 				console.log(response);
 				let code = response.data.data["verification_code:"];
 				self.trueVerificationCode = code;
@@ -159,8 +158,8 @@ let signUp = new Vue({
 			}
 		}
 
-		
-		
+
+
 	},
 
 
@@ -175,7 +174,7 @@ let signUp = new Vue({
 				this.isErrors[0].validateMail = false;
 
 				this.checkUniqueMail(this.userMail);
-				
+
 			}
 		},
 		checkPass: function(){
@@ -186,13 +185,13 @@ let signUp = new Vue({
 			}
 		},
 		checkUniqLogin: function(){
-	
+
 			this.checkUniqueLogin(this.userLogin);
-	
+
 		},
 		disableSubmitCheck: function(){
 			for(key in this.isErrors[0]){
-				if(this.userName.length==0    || 
+				if(this.userName.length==0    ||
 				   this.userSurname.length==0 ||
 				   this.userLogin.length==0   ||
 				   this.userPassword.length<6 ||
@@ -211,11 +210,11 @@ let signUp = new Vue({
 		getDateOfBirth: function(){
 			let monthNum = this.months.indexOf(this.selectedMonth) +1;
 			let birthDay = this.selectedYear+"-"+monthNum+"-"+this.selectedDay;
-			return birthDay;		
+			return birthDay;
 		},
 
-		
-	
+
+
 	},
 
 	created: function(){
@@ -234,9 +233,10 @@ let signUp = new Vue({
 					startYear--;
 				}
 
-				
+
+
 			}
-	
+
 
 
 });

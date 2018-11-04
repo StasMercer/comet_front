@@ -36,7 +36,7 @@
 				<div class="userData userData-name">
 					<h2 class="userData__title">Your Name</h2>
 					<input class="userData__input" type="text" name="userName" v-model="userName">
-					
+
 				</div>
 
 				<div class="userData userData-surname">
@@ -78,7 +78,7 @@
 					<select class="userData__BDay userData__year" name="BDate_year" v-model="selectedYear">
 						<option v-for="year in years" v-bind:value="year">{{year}}</option>
 					</select>
-					
+
 				</div>
 
 				<div class="userData userData-location">
@@ -86,14 +86,14 @@
 					<aboutinput  title="Why we need your location?" content="It helps us to find a nearest events for you">?</aboutinput>
 					<input class="userData__input"  type="text" name="userLocation" >
 				</div>
-				
+
 				<button class="signUp__submit" type="button"  v-bind:disabled="disableSubmitCheck" v-on:click="postUser">Continue</button>
 				<span class="errorMsg" v-if="isErrors[0].signUpErr">{{errorMessages[0].signUpErrMsg}}</span>
-				
+
 				<div class="signUpLoaderBG" v-if="loaders.signUpLoader">
 					<div class="screenLoader"></div>
 				</div>
-		
+
 			</div>
 
 			<div class="signUp" v-if="signUpEnd">
@@ -106,9 +106,9 @@
 				</div>
 			</div>
 			</div>
-			
+
 		</div>
-		
+
 	</main>
 	<!-- <script type="text/javascript" src="js/loader.js"></script> -->
 	<script type="text/javascript" src="js/script.js"></script>
