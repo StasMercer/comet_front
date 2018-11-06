@@ -36,7 +36,7 @@ let signUp = new Vue({
 		errorMessages: [{
 			validateMail: "",
 			password: "Password can`t be less then 6 symbols",
-			uniqLogin: "This login alredy exists",
+			uniqLogin: "This login already exists",
 			signUpErrMsg: "Getting some trouble. Please, try singUp again",
 			verifErrMsg: "You entered wrong verification code"
 		}],
@@ -61,70 +61,60 @@ let signUp = new Vue({
 	methods: {
 		checkUniqueLogin: function(login){
 
-					param = JSON.stringify({
-						"username": login,
-						"email": "",
-						"password": "",
-						"date_of_birth": ""
-					});
+
 					this.loaders.loginLoader = true;
 					this.isErrors[0].uniqLogin = false;
 					let self = this;
-					axios.post(`${this.registrationLink}check_username/${this.userLogin}/`,param,this.axiosConfig).then(function(response){
+					axios.get(`${this.registrationLink}check_username/${this.userLogin}/`).then(function(response){
 						self.loaders.loginLoader = false;
 						self.isErrors[0].uniqLogin = false;
 
+
+						self.loaders.loginLoader = false;
+						let result = response.data.data;
+
+						if(result != "username is unique"){
+								self.isErrors[0].uniqLogin = true;
+						}
+
 					},
 					function(error){
-						self.loaders.loginLoader = false;
-						let loginError = error.response.data.errors;
-						for(key in loginError){
-							if(			loginError[key].source.pointer == '/data/attributes/username' &&
-							  			loginError[key].detail 		   == "This field must be unique."	){
-								self.isErrors[0].uniqLogin = true;
-							}
-						}
+						//error
 					});
 				},
 
 		checkUniqueMail: function(mail){
 
-				param = JSON.stringify({
-					"username": "",
-					"email": mail,
-					"password": "",
-					"date_of_birth": ""
-				});
 
 				let self = this;
 				this.isErrors[0].uniqMail = false;
 				this.loaders.mailLoader = true;
-				axios.post(`${this.registrationLink}check_email/${this.userMail}/`,param,this.axiosConfig).then(function(response){
+				axios.get(`${this.registrationLink}check_email/${this.userMail}/`).then(function(response){
+							let result = response.data.data;
 							self.loaders.mailLoader = false;
-							self.isErrors[0].uniqMail = false;
+								if(result != "email is unique"){
+									self.isErrors[0].uniqMail = true;
+									self.errorMessages[0].validateMail = "This E-mail is alredy exists";
+								}
 					},
 					function(error){
-						self.loaders.mailLoader = false;
-						let mailError = error.response.data.errors;
-						for(key in mailError){
-							if(mailError[key].source.pointer == '/data/attributes/email'){
-								self.isErrors[0].uniqMail = true;
-								self.errorMessages[0].validateMail = "This E-mail is alredy exists";
-							}
-						}
+							//error
 					});
 				},
 
 		getVerificationCode: function(){
 			let link = this.verificationLink + this.userMail+"/";
 			let self = this;
+			self.loaders.signUpLoader = true;
 			axios.get(`${this.registrationLink}verify_email/${this.userMail}/`).then(function(response){
 				console.log(response);
-				let code = response.data.data["verification_code:"];
+				self.loaders.signUpLoader = false;
+				let code = response.data.data["verification_code"];
 				self.trueVerificationCode = code;
+				self.signUpEnd = true;
 			},
 			function(error){
-				console.log(error.response);
+				//error
 			});
 		},
 		postUser: function(){
@@ -134,25 +124,23 @@ let signUp = new Vue({
 				"password": this.userPassword,
 				"date_of_birth": this.getDateOfBirth
 			});
-			let self = this;
-			self.loaders.signUpLoader = true;
-			axios.post(this.registrationLink,param,this.axiosConfig).then(function(response){
-				self.loaders.signUpLoader = false;
-				self.getVerificationCode();
-				self.signUpEnd = true;
+
+
+			console.log(`${this.registrationLink}registation/`);
+			axios.post(`${this.registrationLink}registration/`,param,this.axiosConfig).then(function(response){
+				console.log(response);
+				alert('you were registered');
 			},
 			function(error){
 				//error
-				self.loaders.signUpLoader = false;
-				self.isErrors[0].signUpErr = true;
-
 			});
 		},
 
 		checkVerifCode: function(){
 			this.isErrors[0].verifErr = false;
+			console.log(this.trueVerificationCode);
 			if(this.userVerificationCode == this.trueVerificationCode){
-				alert("You were registered")
+					this.postUser();
 			} else {
 				this.isErrors[0].verifErr = true;
 			}

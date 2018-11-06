@@ -18,7 +18,7 @@
 <!-- 	<div id="screenLoader" class="loaderBg">
 		<div class="screenLoader"></div>
 	</div> -->
-	
+
 	<main>
 		<div class="container">
 			<div  id="signUpBlock" class="signUpBlock">
@@ -81,13 +81,13 @@
 
 				</div>
 
-				<div class="userData userData-location">
+				<!-- <div class="userData userData-location">
 					<h2 class="userData__title" v-on:click="getDateOfBirth()">Your Location</h2>
 					<aboutinput  title="Why we need your location?" content="It helps us to find a nearest events for you">?</aboutinput>
 					<input class="userData__input"  type="text" name="userLocation" >
-				</div>
+				</div> -->
 
-				<button class="signUp__submit" type="button"  v-bind:disabled="disableSubmitCheck" v-on:click="postUser">Continue</button>
+				<button class="signUp__submit" type="button"  v-bind:disabled="disableSubmitCheck" v-on:click="getVerificationCode()">Continue</button>
 				<span class="errorMsg" v-if="isErrors[0].signUpErr">{{errorMessages[0].signUpErrMsg}}</span>
 
 				<div class="signUpLoaderBG" v-if="loaders.signUpLoader">
