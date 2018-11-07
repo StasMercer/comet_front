@@ -20,8 +20,8 @@ let signUp = new Vue({
 			      'Content-Type': 'application/json',
 			  }
 		},
-		userName:'',
-		userSurname: '',
+		userFirstName:'',
+		userLastName: '',
 		userMail: '',
 		userPassword:'',
 		userLogin: '',
@@ -119,16 +119,19 @@ let signUp = new Vue({
 		},
 		postUser: function(){
 			param = JSON.stringify({
-				"username": this.userLogin,
 				"email": this.userMail,
+				"username": this.userLogin,
 				"password": this.userPassword,
+				"first_name": this.userFirstName,
+				"last_name": this.userLastName,
 				"date_of_birth": this.getDateOfBirth
 			});
 
 
-			console.log(`${this.registrationLink}registation/`);
-			axios.post(`${this.registrationLink}registration/`,param,this.axiosConfig).then(function(response){
-				console.log(response);
+
+
+			axios.post(`${this.registrationLink}users/`,param,this.axiosConfig).then(function(response){
+
 				alert('you were registered');
 			},
 			function(error){
@@ -179,8 +182,8 @@ let signUp = new Vue({
 		},
 		disableSubmitCheck: function(){
 			for(key in this.isErrors[0]){
-				if(this.userName.length==0    ||
-				   this.userSurname.length==0 ||
+				if(this.userFirstName.length==0    ||
+				   this.userLastName.length==0 ||
 				   this.userLogin.length==0   ||
 				   this.userPassword.length<6 ||
 				   this.userMail.length==0){
